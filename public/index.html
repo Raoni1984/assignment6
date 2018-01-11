@@ -12,25 +12,32 @@
         <p v-show="show">You either see me ...</p>
         <p v-show="!show">...or me</p>
         <p v-if="show">You either see me ...</p>
-        <p v-if="!show">...or me</p>
+        <p v-else>...or me</p>
       </div>
       <!-- 2) Output an <ul> of array elements of your choice. Also print the index of each element. -->
       <ul>
-        <li></li>
+        <li v-for="(name, index) in array"><div>{{name}}({{index}})</div></li>
       </ul>
       <!-- 3) Print all key-value pairs of the following object: {title: 'Lord of the Rings', author: 'J.R.R. Tolkiens', books: '3'}. Also print the index of each item. -->
       <ul>
-        <li></li>
+        <li v-for="(value, key) in myObject"><div>{{key}}: {{
+          value}}</div></li>
       </ul>
       <!-- 4) Print the following object (only the values) and also create a nested loop for the array: {name: 'TESTOBJECT', data: [1.67, 1.33, 0.98, 2.21]} (hint: use v-for and v-if to achieve this) -->
       <ul>
-        <li>
-        
+        <li v-for="value in testData">
+          <template v-if="Array.isArray(value)">
+            <ul>
+                <li v-for="item in value">{{item}}</li>
+            </ul>
+          </template>
+          <template v-else>
+            {{value}}
+          </template>
         </li>
       </ul>
     </div>
     <script src="/app.js"></script>
-    <!-- All you have to do is include the reload script and have it be on every page of your project -->
     <script src="/reload/reload.js"></script> 
   </body>
 </html>
